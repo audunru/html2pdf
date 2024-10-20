@@ -11,7 +11,14 @@ const configSchema = z.object({
     .optional()
     .transform((x) => x === "true")
     .pipe(z.boolean()),
-  WAIT_UNTIL: z.string().default("domcontentloaded"),
+  WAIT_UNTIL: z
+    .union([
+      z.literal("domcontentloaded"),
+      z.literal("load"),
+      z.literal("networkidle"),
+      z.literal("commit"),
+    ])
+    .default("domcontentloaded"),
   PDF_OPTIONS: z
     .string()
     .default("{}")

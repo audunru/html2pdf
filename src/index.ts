@@ -1,13 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-require-imports */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
   APIGatewayProxyEventV2,
   APIGatewayProxyStructuredResultV2,
 } from "aws-lambda";
-const playwright = require("playwright-aws-lambda");
+import * as playwright from "playwright-aws-lambda";
+import { ChromiumBrowser } from "playwright-core";
 
 import config from "./utils/config";
 import { isDownloadRequest, safeJsonParse } from "./utils/request";
@@ -22,7 +18,7 @@ export const handler = async (
   event: Pick<APIGatewayProxyEventV2, "body">,
 ): Promise<APIGatewayProxyStructuredResultV2> => {
   const { body = "" } = event;
-  let browser = null;
+  let browser: ChromiumBrowser | null = null;
 
   const request = safeJsonParse(isDownloadRequest)(body);
   if (request.hasError) {
