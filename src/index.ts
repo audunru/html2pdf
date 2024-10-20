@@ -6,7 +6,7 @@ import * as playwright from "playwright-aws-lambda";
 import { ChromiumBrowser } from "playwright-core";
 
 import config from "./utils/config";
-import { isDownloadRequest, safeJsonParse } from "./utils/request";
+import { downloadRequestSchema } from "./utils/request";
 import {
   ReasonPhrases,
   respondError,
@@ -20,8 +20,9 @@ export const handler = async (
   const { body = "" } = event;
   let browser: ChromiumBrowser | null = null;
 
-  const request = safeJsonParse(isDownloadRequest)(body);
-  if (request.hasError) {
+  const request = downloadRequestSchema.safeParse(body);
+
+  if (!request.success) {
     return respondError(ReasonPhrases.BAD_REQUEST, StatusCodes.BAD_REQUEST);
   }
 
@@ -31,7 +32,7 @@ export const handler = async (
       javaScriptEnabled: config.JAVASCRIPT_ENABLED,
     });
     const page = await context.newPage();
-    await page.setContent(request.parsed.html, {
+    await page.setContent(request.data.html, {
       waitUntil: config.WAIT_UNTIL,
     });
     const pdf = await page.pdf(config.PDF_OPTIONS);

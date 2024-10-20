@@ -2,6 +2,8 @@ import { env } from "node:process";
 
 import { z } from "zod";
 
+import { parseJson } from "./json";
+
 const configSchema = z.object({
   ALLOW_ORIGIN: z.string().optional(),
   HSTS_HEADER: z.string().optional(),
@@ -19,12 +21,7 @@ const configSchema = z.object({
       z.literal("commit"),
     ])
     .default("domcontentloaded"),
-  PDF_OPTIONS: z
-    .string()
-    .default("{}")
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    .transform((x) => JSON.parse(x))
-    .pipe(z.object({})),
+  PDF_OPTIONS: z.string().default("{}").transform(parseJson).pipe(z.object({})),
 });
 
 const config = configSchema.safeParse(env);
