@@ -16,7 +16,7 @@
     "lint": "eslint src",
     "format": "prettier --write src",
     "prepare": "husky",
-    "test": "vitest --run",
+    "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build"
   },
