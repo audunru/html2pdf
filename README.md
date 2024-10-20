@@ -2,6 +2,8 @@
 
 An AWS Lambda function that will accept HTML as its input and return a PDF.
 
+This is a work in progress.
+
 ## Example
 
 This will produce a PDF with the text "Hello world" in it:
