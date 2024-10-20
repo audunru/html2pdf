@@ -1,8 +1,11 @@
 import { env } from "node:process";
 
+import { Page } from "playwright-core";
 import { z } from "zod";
 
 import { parseJson } from "./json";
+
+export type PdfOptions = Parameters<Page["pdf"]>[0];
 
 const configSchema = z.object({
   ALLOW_ORIGIN: z.string().optional(),
@@ -21,7 +24,11 @@ const configSchema = z.object({
       z.literal("commit"),
     ])
     .default("domcontentloaded"),
-  PDF_OPTIONS: z.string().default("{}").transform(parseJson).pipe(z.object({})),
+  PDF_OPTIONS: z
+    .string()
+    .default("{}")
+    .transform(parseJson<PdfOptions>)
+    .pipe(z.object({})),
 });
 
 const config = configSchema.safeParse(env);
