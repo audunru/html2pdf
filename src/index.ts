@@ -9,6 +9,7 @@ import {
 } from "aws-lambda";
 const playwright = require("playwright-aws-lambda");
 
+import config from "./utils/config";
 import { isDownloadRequest, safeJsonParse } from "./utils/request";
 import {
   ReasonPhrases,
@@ -30,10 +31,12 @@ export const handler = async (
 
   try {
     browser = await playwright.launchChromium({ headless: true });
-    const context = await browser.newContext({ javaScriptEnabled: false });
+    const context = await browser.newContext({
+      javaScriptEnabled: config.JAVASCRIPT_ENABLED,
+    });
     const page = await context.newPage();
     await page.setContent(request.parsed.html, {
-      waitUntil: "domcontentloaded",
+      waitUntil: config.WAIT_UNTIL,
     });
     const pdf = await page.pdf({
       format: "a4",

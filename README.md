@@ -15,9 +15,3 @@ curl https://your-lambda-url \
   --data-raw $'{"html":"<html><body><p>Hello world</p></body></html>"}' \
   --output production.pdf
 ```
-
-## Caveats
-
-- JavaScript is disabled
-- PDF generation occurs after [domcontentloaded](https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event)
-- CSS must be embedded as style tags
