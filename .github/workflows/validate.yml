@@ -1,22 +1,23 @@
-name: Validate
-
 on:
   pull_request:
-    branches: [master]
-
+    branches:
+      - main
+name: validate
 jobs:
   build-frontend:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.48.1-jammy
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Use Node v18
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: 18
           cache: "npm"
-      - name: Install node_modules
-        run: npm ci
-      - name: Validate frontend
-        run: npm run prepackage
+          registry-url: "https://registry.npmjs.org"
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test
+      - run: npm run build

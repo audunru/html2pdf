@@ -1,4 +1,4 @@
-# AWS Lambda PDF generator
+# AWS Lambda PDF
 
 An AWS Lambda function that will accept HTML as its input and return a PDF.
 

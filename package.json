@@ -2,29 +2,33 @@
   "name": "aws-lambda-pdf",
   "version": "0.0.1",
   "description": "Create PDFs using Amazon Lambda functions",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/index.js",
+    "dist/index.d.ts"
+  ],
   "scripts": {
-    "commit": "cz",
-    "prepackage": "npm-run-all typecheck lint test",
-    "package": "npm run build",
     "prebuild": "rimraf dist",
-    "build": "esbuild src/index.ts --outfile=dist/index.js --bundle --minify --platform=node --target=node18 --packages=external --sourcemap",
+    "build": "esbuild src/index.ts --outfile=dist/index.js --bundle --platform=node --target=node18 --packages=external",
+    "postbuild": "tsc",
     "lint": "eslint src",
     "format": "prettier --write src",
     "prepare": "husky",
     "test": "vitest --run",
-    "typecheck": "tsc"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "playwright-aws-lambda": "^0.11.0",
     "playwright-core": "^1.48.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.5.0",
-    "@commitlint/config-conventional": "^19.5.0",
     "@eslint/js": "^9.13.0",
     "@playwright/test": "^1.48.1",
     "@types/aws-lambda": "^8.10.145",
     "@types/eslint__js": "^8.42.3",
+    "@types/node": "^18.19.57",
     "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1691.0",
     "esbuild": "^0.24.0",
