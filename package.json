@@ -2,6 +2,7 @@
   "name": "aws-lambda-pdf",
   "version": "0.0.4",
   "description": "Create PDFs using Amazon Lambda functions",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
