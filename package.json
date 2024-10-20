@@ -46,6 +46,19 @@
     "typescript-eslint": "^8.10.0",
     "vitest": "^2.1.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/audunru/aws-lambda-pdf"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "pdf"
+  ],
+  "bugs": {
+    "url": "https://github.com/audunru/aws-lambda-pdf/issues"
+  },
+  "homepage": "https://github.com/audunru/aws-lambda-pdf",
   "engines": {
     "node": "^18.0.0",
     "npm": ">=10.0.0"
