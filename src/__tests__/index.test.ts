@@ -1,9 +1,16 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { handler } from "..";
+import config from "../utils/config";
 import { getPdfText } from "./pdf";
 
+const originalConfig = { ...config };
+
 describe("when printing a pdf", () => {
+  beforeEach(() => {
+    config.ALLOW_ORIGIN = originalConfig.ALLOW_ORIGIN;
+    config.HSTS_HEADER = originalConfig.HSTS_HEADER;
+  });
   describe("if request body is missing", () => {
     it("returns a 400 error", async () => {
       const event = {};
@@ -40,9 +47,8 @@ describe("when printing a pdf", () => {
   });
   describe("if request body html contains valid HTML", () => {
     it("returns a PDF", async () => {
-      const originalOrigin = process.env.ALLOW_ORIGIN;
-      process.env.ALLOW_ORIGIN = "https://domain.com";
-      process.env.HSTS_HEADER = "max-age=63072000; includeSubDomains; preload";
+      config.ALLOW_ORIGIN = "https://domain.com";
+      config.HSTS_HEADER = "max-age=63072000; includeSubDomains; preload";
 
       const event = {
         body: JSON.stringify({
@@ -54,8 +60,8 @@ describe("when printing a pdf", () => {
       expect(response.statusCode).toEqual(200);
       expect(response.isBase64Encoded).toEqual(true);
       expect(response.headers).toEqual({
-        "Access-Control-Allow-Origin": "https://domain.com",
         "Content-type": "application/pdf",
+        "Access-Control-Allow-Origin": "https://domain.com",
         "Strict-Transport-Security":
           "max-age=63072000; includeSubDomains; preload",
       });
@@ -65,15 +71,11 @@ describe("when printing a pdf", () => {
       );
 
       expect(text).toEqual("Hello world");
-
-      process.env.ALLOW_ORIGIN = originalOrigin;
     });
   });
   describe("if environment variable ALLOW_ORIGIN is undefined", () => {
     it("returns headers without Access-Control-Allow-Origin", async () => {
-      const originalOrigin = process.env.ALLOW_ORIGIN;
-      delete process.env.ALLOW_ORIGIN;
-      process.env.HSTS_HEADER = "max-age=63072000; includeSubDomains; preload";
+      config.HSTS_HEADER = "max-age=63072000; includeSubDomains; preload";
 
       const event = {
         body: JSON.stringify({
@@ -87,8 +89,6 @@ describe("when printing a pdf", () => {
         "Strict-Transport-Security":
           "max-age=63072000; includeSubDomains; preload",
       });
-
-      process.env.ALLOW_ORIGIN = originalOrigin;
     });
   });
 });

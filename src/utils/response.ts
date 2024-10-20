@@ -1,5 +1,7 @@
 import { APIGatewayProxyStructuredResultV2 } from "aws-lambda";
 
+import config from "./config";
+
 enum MimeType {
   PDF = "application/pdf",
   JSON = "application/json",
@@ -29,12 +31,12 @@ const respond = ({
 }: RespondProps): APIGatewayProxyStructuredResultV2 => ({
   statusCode,
   headers: {
-    ...(process.env.ALLOW_ORIGIN && {
-      "Access-Control-Allow-Origin": process.env.ALLOW_ORIGIN,
-    }),
     "Content-type": contentType,
-    ...(process.env.HSTS_HEADER && {
-      "Strict-Transport-Security": process.env.HSTS_HEADER,
+    ...(config.ALLOW_ORIGIN && {
+      "Access-Control-Allow-Origin": config.ALLOW_ORIGIN,
+    }),
+    ...(config.HSTS_HEADER && {
+      "Strict-Transport-Security": config.HSTS_HEADER,
     }),
   },
   body,

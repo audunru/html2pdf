@@ -1,0 +1,17 @@
+import { env } from "node:process";
+
+import { z } from "zod";
+
+const configSchema = z.object({
+  ALLOW_ORIGIN: z.string().optional(),
+  HSTS_HEADER: z.string().optional(),
+});
+
+const config = configSchema.safeParse(env);
+
+if (!config.success) {
+  console.error("❌ Invalid environment variables:", config.error.format());
+  process.exit(1);
+}
+
+export default config.data;
