@@ -38,16 +38,7 @@ export const handler = async (
     await page.setContent(request.parsed.html, {
       waitUntil: config.WAIT_UNTIL,
     });
-    const pdf = await page.pdf({
-      format: "a4",
-      printBackground: true,
-      margin: {
-        top: "1cm",
-        bottom: "1cm",
-        left: "1cm",
-        right: "1cm",
-      },
-    });
+    const pdf = await page.pdf(config.PDF_OPTIONS);
     await context.close();
     const pdfBase64Encoded = pdf.toString("base64");
 
