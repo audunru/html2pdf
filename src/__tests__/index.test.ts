@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { handler } from "../";
-import { getPdfText } from "../utils/pdf";
+import { handler } from "..";
+import { getPdfText } from "./pdf";
 
 describe("when printing a pdf", () => {
   describe("if request body is missing", () => {
@@ -42,6 +42,7 @@ describe("when printing a pdf", () => {
     it("returns a PDF", async () => {
       const originalOrigin = process.env.ALLOW_ORIGIN;
       process.env.ALLOW_ORIGIN = "https://domain.com";
+      process.env.HSTS_HEADER = "max-age=63072000; includeSubDomains; preload";
 
       const event = {
         body: JSON.stringify({
@@ -72,6 +73,7 @@ describe("when printing a pdf", () => {
     it("returns headers without Access-Control-Allow-Origin", async () => {
       const originalOrigin = process.env.ALLOW_ORIGIN;
       delete process.env.ALLOW_ORIGIN;
+      process.env.HSTS_HEADER = "max-age=63072000; includeSubDomains; preload";
 
       const event = {
         body: JSON.stringify({

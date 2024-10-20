@@ -33,7 +33,9 @@ const respond = ({
       "Access-Control-Allow-Origin": process.env.ALLOW_ORIGIN,
     }),
     "Content-type": contentType,
-    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+    ...(process.env.HSTS_HEADER && {
+      "Strict-Transport-Security": process.env.HSTS_HEADER,
+    }),
   },
   body,
   isBase64Encoded,
