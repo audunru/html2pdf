@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/audunru/aws-lambda-pdf/compare/v0.2.0...v0.2.1) (2024-10-21)
+
+
+### Bug Fixes
+
+* allow all pdf options ([8289590](https://github.com/audunru/aws-lambda-pdf/commit/8289590179a15e8e8026d9d7a303a63da068a3cb))
+
 ## [0.2.0](https://github.com/audunru/aws-lambda-pdf/compare/v0.1.0...v0.2.0) (2024-10-20)
 
 
