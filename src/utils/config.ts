@@ -28,7 +28,7 @@ const configSchema = z.object({
     .string()
     .default("{}")
     .transform(parseJson<PdfOptions>)
-    .pipe(z.object({})),
+    .pipe(z.object({}).passthrough()),
 });
 
 const config = configSchema.safeParse(env);
