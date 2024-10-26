@@ -1,0 +1,27 @@
+service: aws-lambda-pdf-example
+
+build:
+  esbuild:
+    packages: external
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  apiGateway:
+    binaryMediaTypes:
+      - "application/pdf"
+
+functions:
+  create:
+    handler: node_modules/aws-lambda-pdf/dist/index.handler
+    environment:
+      ALLOW_ORIGIN: "http://localhost:3000"
+    events:
+      - http:
+          path: pdf
+          method: post
+          cors:
+            origin: "http://localhost:3000"
+            headers:
+              - Content-Type
+              - Content-Encoding

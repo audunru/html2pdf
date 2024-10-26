@@ -1,0 +1,12 @@
+{
+  "name": "aws-lambda-pdf-example",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "aws-lambda-pdf": "^0.2.1"
+  },
+  "engines": {
+    "node": "^18.0.0",
+    "npm": ">=10.0.0"
+  }
+}
