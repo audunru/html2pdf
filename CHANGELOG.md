@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/audunru/aws-lambda-pdf/compare/v0.2.1...v0.2.2) (2024-10-26)
+
+
+### Miscellaneous Chores
+
+* release 0.2.2 ([e259d43](https://github.com/audunru/aws-lambda-pdf/commit/e259d43f6006ce20465cb6caa0280e74f401a192))
+
 ## [0.2.1](https://github.com/audunru/aws-lambda-pdf/compare/v0.2.0...v0.2.1) (2024-10-21)
 
 
