@@ -29,3 +29,7 @@ curl https://replace-with-your-url.execute-api.us-east-1.amazonaws.com/dev/pdf \
   --data-raw $'{"html":"<html><body><p>Hello world</p></body></html>"}' \
   --output hello-world.pdf
 ```
+
+## Logging
+
+[Live Tail in CloudWatch](https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1#logsV2:live-tail)
