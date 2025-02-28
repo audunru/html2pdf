@@ -29,7 +29,6 @@
     "@eslint/js": "^9.20.0",
     "@playwright/test": "^1.50.1",
     "@types/aws-lambda": "^8.10.147",
-    "@types/eslint__js": "^8.42.3",
     "@types/node": "^18.19.75",
     "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1692.0",
