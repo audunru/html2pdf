@@ -14,7 +14,11 @@ FROM deps AS prod-deps
   WORKDIR /app
   RUN npm ci --omit=dev
 
-FROM mcr.microsoft.com/playwright:v1.51.0-jammy AS runner
+FROM mcr.microsoft.com/playwright:v1.51.0-jammy AS playwright-base
+  RUN npx playwright uninstall --all
+  RUN npx playwright install --only-shell chromium
+
+FROM playwright-base AS runner
   WORKDIR /app
   RUN addgroup --system --gid 1001 express
   RUN adduser --system --uid 1001 express
