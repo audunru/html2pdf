@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/audunru/html2pdf/compare/v0.2.2...v0.3.0) (2025-03-08)
+
+
+### Miscellaneous Chores
+
+* release 0.3.0 ([a6fb793](https://github.com/audunru/html2pdf/commit/a6fb7933e2e95c7fb6b91cbf2e1cb1b1bd74f97f))
+
 ## [0.2.2](https://github.com/audunru/html2pdf/compare/v0.2.2...v0.2.2) (2025-03-08)
 
 
