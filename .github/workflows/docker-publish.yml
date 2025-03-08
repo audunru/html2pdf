@@ -25,7 +25,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            audunru/html-to-pdf
+            audunru/html2pdf
           tags: |
             type=ref,event=branch
             type=ref,event=pr
