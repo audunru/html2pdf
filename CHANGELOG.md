@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/audunru/html2pdf/compare/v0.3.0...v0.3.1) (2025-03-08)
+
+
+### Bug Fixes
+
+* port is a string ([82fa104](https://github.com/audunru/html2pdf/commit/82fa10410e8bb462b21d01519e1db1a7b2906692))
+
 ## [0.3.0](https://github.com/audunru/html2pdf/compare/v0.2.2...v0.3.0) (2025-03-08)
 
 
