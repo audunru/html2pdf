@@ -13,6 +13,7 @@ app.post("/pdf", async (req, res) => {
   const request = downloadRequestSchema.safeParse(req.body);
 
   if (!request.success) {
+    console.error(request.error);
     res
       .status(StatusCodes.BAD_REQUEST)
       .json({ error: ReasonPhrases.BAD_REQUEST });

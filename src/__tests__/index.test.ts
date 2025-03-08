@@ -1,94 +1,73 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
-import { handler } from "..";
-import config from "../utils/config";
 import { getPdfText } from "./pdf";
 
-const originalConfig = { ...config };
-
 describe("when printing a pdf", () => {
-  beforeEach(() => {
-    config.ALLOW_ORIGIN = originalConfig.ALLOW_ORIGIN;
-    config.HSTS_HEADER = originalConfig.HSTS_HEADER;
-  });
   describe("if request body is missing", () => {
     it("returns a 400 error", async () => {
-      const event = {};
-      const response = await handler(event);
+      const response = await fetch("http://localhost:3000/pdf", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-      expect(response.statusCode).toEqual(400);
-      expect(response.statusCode).toEqual(400);
-      expect(response.body).toEqual("Bad Request");
+      expect(response.status).toEqual(400);
+      const body = await response.json();
+      expect(body).toEqual({ error: "Bad Request" });
     });
   });
   describe("if request body is an empty object", () => {
     it("returns a 400 error", async () => {
-      const event = {
-        body: JSON.stringify({}),
-      };
-      const response = await handler(event);
+      const data = {};
+      const response = await fetch("http://localhost:3000/pdf", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-      expect(response.statusCode).toEqual(400);
-      expect(response.body).toEqual("Bad Request");
+      expect(response.status).toEqual(400);
+      const body = await response.json();
+      expect(body).toEqual({ error: "Bad Request" });
     });
   });
   describe("if request body html is undefined", () => {
     it("returns a 400 error", async () => {
-      const event = {
-        body: JSON.stringify({
-          html: undefined,
-        }),
-      };
-      const response = await handler(event);
+      const data = { html: undefined };
+      const response = await fetch("http://localhost:3000/pdf", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-      expect(response.statusCode).toEqual(400);
-      expect(response.body).toEqual("Bad Request");
+      expect(response.status).toEqual(400);
+      const body = await response.json();
+      expect(body).toEqual({ error: "Bad Request" });
     });
   });
   describe("if request body html contains valid HTML", () => {
     it("returns a PDF", async () => {
-      config.ALLOW_ORIGIN = "https://domain.com";
-      config.HSTS_HEADER = "max-age=63072000; includeSubDomains; preload";
-
-      const event = {
-        body: JSON.stringify({
-          html: "<html><body><p>Hello world</p></body></html>",
-        }),
+      const data = {
+        html: "<html><body><p>Hello world</p></body></html>",
       };
-      const response = await handler(event);
-
-      expect(response.statusCode).toEqual(200);
-      expect(response.isBase64Encoded).toEqual(true);
-      expect(response.headers).toEqual({
-        "Content-type": "application/pdf",
-        "Access-Control-Allow-Origin": "https://domain.com",
-        "Strict-Transport-Security":
-          "max-age=63072000; includeSubDomains; preload",
+      const response = await fetch("http://localhost:3000/pdf", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
-      const text = await getPdfText(
-        Uint8Array.from(atob(response.body as string), (c) => c.charCodeAt(0)),
-      );
+      expect(response.status).toEqual(200);
+      expect(response.headers.get("Content-type")).toEqual("application/pdf");
 
+      const body = await response.arrayBuffer();
+      const text = await getPdfText(body);
       expect(text).toEqual("Hello world");
-    });
-  });
-  describe("if environment variable ALLOW_ORIGIN is undefined", () => {
-    it("returns headers without Access-Control-Allow-Origin", async () => {
-      config.HSTS_HEADER = "max-age=63072000; includeSubDomains; preload";
-
-      const event = {
-        body: JSON.stringify({
-          html: "<html><body><p>Hello world</p></body></html>",
-        }),
-      };
-      const response = await handler(event);
-
-      expect(response.headers).toEqual({
-        "Content-type": "application/pdf",
-        "Strict-Transport-Security":
-          "max-age=63072000; includeSubDomains; preload",
-      });
     });
   });
 });

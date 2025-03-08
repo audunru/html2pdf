@@ -1,14 +1,7 @@
 import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
-import {
-  DocumentInitParameters,
-  PDFDataRangeTransport,
-  TextItem,
-  TypedArray,
-} from "pdfjs-dist/types/src/display/api";
+import { TextItem } from "pdfjs-dist/types/src/display/api";
 
-export const getPdfText = async (
-  src: string | TypedArray | DocumentInitParameters | PDFDataRangeTransport,
-): Promise<string> => {
+export const getPdfText = async (src: ArrayBuffer): Promise<string> => {
   const pdf = await getDocument(src).promise;
 
   const pageNumberList = Array.from({ length: pdf.numPages }, (_, i) => i + 1);
