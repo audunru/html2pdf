@@ -1,5 +1,4 @@
-import * as playwright from "playwright-aws-lambda";
-import { ChromiumBrowser } from "playwright-core";
+import { chromium, ChromiumBrowser } from "playwright-core";
 
 import { PdfOptions } from "./config";
 
@@ -10,11 +9,11 @@ export const getPdf = async (
     waitUntil: "domcontentloaded" | "load" | "networkidle" | "commit";
     pdfOptions: PdfOptions;
   },
-): Promise<string> => {
+): Promise<Buffer> => {
   let browser: ChromiumBrowser | null = null;
 
   try {
-    browser = await playwright.launchChromium({ headless: true });
+    browser = await chromium.launch({ headless: true });
     const context = await browser.newContext({
       javaScriptEnabled: options.javaScriptEnabled,
     });
@@ -24,9 +23,8 @@ export const getPdf = async (
     });
     const pdf = await page.pdf(options.pdfOptions);
     await context.close();
-    const pdfBase64Encoded = pdf.toString("base64");
 
-    return pdfBase64Encoded;
+    return pdf;
   } finally {
     if (browser) {
       await browser.close();

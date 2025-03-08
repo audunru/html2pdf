@@ -2,22 +2,47 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - audunru/playwright
+
 name: validate
+
 jobs:
-  build-frontend:
+  test:
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.50.1-jammy
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node v18
-        uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "npm"
           registry-url: "https://registry.npmjs.org"
+
       - run: npm ci
-      - run: npm run typecheck
-      - run: npm run lint
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64
+          context: .
+          push: false
+          load: true
+          tags: playwright-pdf:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run PDF service container
+        run: docker run -d -p 3000:3000 --name playwright-pdf playwright-pdf:test
+
       - run: npm run test
-      - run: npm run build
+
+      - name: Stop PDF container
+        if: always()
+        run: docker stop playwright-pdf && docker rm playwright-pdf
