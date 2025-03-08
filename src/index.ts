@@ -1,5 +1,5 @@
 import express from "express";
-import expressPino from "express-pino-logger";
+import logger from "pino-http";
 
 import config from "./utils/config";
 import { getPdf } from "./utils/pdf";
@@ -7,10 +7,9 @@ import { downloadRequestSchema } from "./utils/request";
 import { MimeType, ReasonPhrases, StatusCodes } from "./utils/response";
 
 const app = express();
-const logRequest = expressPino();
 
 app.use(express.json());
-app.use(logRequest);
+app.use(logger());
 
 app.post("/pdf", async (req, res) => {
   const request = downloadRequestSchema.safeParse(req.body);
