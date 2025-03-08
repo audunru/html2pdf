@@ -31,15 +31,15 @@ jobs:
           context: .
           push: false
           load: true
-          tags: playwright-pdf:test
+          tags: html2pdf:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Run PDF service container
-        run: docker run -d -p 3000:3000 --name playwright-pdf playwright-pdf:test
+        run: docker run -d -p 3000:3000 --name html2pdf html2pdf:test
 
       - run: npm run test
 
       - name: Stop PDF container
         if: always()
-        run: docker stop playwright-pdf && docker rm playwright-pdf
+        run: docker stop html2pdf && docker rm html2pdf
