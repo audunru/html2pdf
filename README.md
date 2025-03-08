@@ -1,12 +1,16 @@
-# AWS Lambda PDF
+# html2pdf
 
-An AWS Lambda function that will accept HTML as its input and return a PDF.
+Create PDFs using an Express server and Playwright running in a Docker container
 
-## Installation
+## Running
 
-```sh
-npm i aws-lambda-pdf
-```
+### docker
+
+*todo*
+
+### docker compose
+
+*todo*
 
 ## Development
 

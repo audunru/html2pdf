@@ -1,14 +1,9 @@
 {
-  "name": "aws-lambda-pdf",
+  "name": "html2pdf",
   "version": "0.2.2",
-  "description": "Create PDFs using Amazon Lambda functions",
+  "description": "Create PDFs using an Express server and Playwright running in a Docker container",
   "license": "MIT",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist/index.js",
-    "dist/index.d.ts"
-  ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "esbuild src/index.ts --outfile=dist/index.js --bundle --platform=node --target=node20 --packages=external",
@@ -48,17 +43,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/audunru/aws-lambda-pdf.git"
+    "url": "git+https://github.com/audunru/html2pdf.git"
   },
   "keywords": [
-    "aws",
-    "lambda",
-    "pdf"
+    "express",
+    "playwright",
+    "pdf",
+    "docker"
   ],
   "bugs": {
-    "url": "https://github.com/audunru/aws-lambda-pdf/issues"
+    "url": "https://github.com/audunru/html2pdf/issues"
   },
-  "homepage": "https://github.com/audunru/aws-lambda-pdf",
+  "homepage": "https://github.com/audunru/html2pdf",
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
