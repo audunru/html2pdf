@@ -1,4 +1,5 @@
 import express from "express";
+import expressPino from "express-pino-logger";
 
 import config from "./utils/config";
 import { getPdf } from "./utils/pdf";
@@ -6,8 +7,10 @@ import { downloadRequestSchema } from "./utils/request";
 import { MimeType, ReasonPhrases, StatusCodes } from "./utils/response";
 
 const app = express();
+const logRequest = expressPino();
 
 app.use(express.json());
+app.use(logRequest);
 
 app.post("/pdf", async (req, res) => {
   const request = downloadRequestSchema.safeParse(req.body);
@@ -21,7 +24,6 @@ app.post("/pdf", async (req, res) => {
   }
 
   if (!request.success) {
-    console.error(request.error);
     res
       .status(StatusCodes.BAD_REQUEST)
       .json({ error: ReasonPhrases.BAD_REQUEST });
@@ -38,8 +40,7 @@ app.post("/pdf", async (req, res) => {
 
     res.setHeader("Content-Type", MimeType.PDF);
     res.status(StatusCodes.OK).send(pdf);
-  } catch (error) {
-    console.error(error);
+  } catch {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ error: ReasonPhrases.INTERNAL_SERVER_ERROR });
