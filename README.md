@@ -11,7 +11,7 @@ Note that any resources referred to in the HTML (JavaScript, CSS, images) will n
 ### docker
 
 ```bash
-docker run -d -p 3000:3000 audunru/html2pdf
+docker run -d -p 3000:3000 --name html2pdf audunru/html2pdf
 ```
 
 ### docker compose
