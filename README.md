@@ -30,7 +30,7 @@ services:
       JAVASCRIPT_ENABLED: true
       WAIT_UNTIL: "domcontentloaded"
       PDF_OPTIONS: "{'landscape':true}"
-      PORT: 3000
+      PORT: "3000"
 ```
 
 ## Turning HTML into a PDF

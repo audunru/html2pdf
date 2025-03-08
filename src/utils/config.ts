@@ -29,7 +29,7 @@ const configSchema = z.object({
     .default("{}")
     .transform(parseJson<PdfOptions>)
     .pipe(z.object({}).passthrough()),
-  PORT: z.number().default(3000),
+  PORT: z.string().default("3000"),
 });
 
 const config = configSchema.safeParse(env);
