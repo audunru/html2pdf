@@ -1,29 +1,23 @@
-import {
-  APIGatewayProxyEventV2,
-  APIGatewayProxyStructuredResultV2,
-} from "aws-lambda";
+import express from "express";
 
 import config from "./utils/config";
 import { getPdf } from "./utils/pdf";
 import { downloadRequestSchema } from "./utils/request";
-import {
-  ReasonPhrases,
-  respondError,
-  respondSuccess,
-  StatusCodes,
-} from "./utils/response";
+import { MimeType, ReasonPhrases, StatusCodes } from "./utils/response";
 
-type PdfEvent = Pick<APIGatewayProxyEventV2, "body">;
+const app = express();
 
-export const handler = async (
-  event: PdfEvent,
-): Promise<APIGatewayProxyStructuredResultV2> => {
-  const { body = "" } = event;
+app.use(express.json({ limit: "10mb" }));
 
-  const request = downloadRequestSchema.safeParse(body);
+app.post("/pdf", async (req, res) => {
+  const request = downloadRequestSchema.safeParse(req.body);
 
   if (!request.success) {
-    return respondError(ReasonPhrases.BAD_REQUEST, StatusCodes.BAD_REQUEST);
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ error: ReasonPhrases.BAD_REQUEST });
+
+    return;
   }
 
   try {
@@ -33,13 +27,16 @@ export const handler = async (
       pdfOptions: config.PDF_OPTIONS,
     });
 
-    return respondSuccess(pdf);
+    res.setHeader("Content-Type", MimeType.PDF);
+    res.status(StatusCodes.OK).send(pdf);
   } catch (error) {
     console.error(error);
-
-    return respondError(
-      ReasonPhrases.INTERNAL_SERVER_ERROR,
-      StatusCodes.INTERNAL_SERVER_ERROR,
-    );
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: ReasonPhrases.INTERNAL_SERVER_ERROR });
   }
-};
+});
+
+app.listen(config.PORT, () => {
+  console.log(`🚀 PDF server listening on port ${config.PORT}`);
+});

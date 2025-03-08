@@ -8,28 +8,25 @@ An AWS Lambda function that will accept HTML as its input and return a PDF.
 npm i aws-lambda-pdf
 ```
 
-## Usage
+## Development
 
-We'll be using [Serverless](https://www.serverless.com/framework/docs/getting-started) to deploy the function, so make sure you set up AWS credentials first.
+### Build Docker image
 
-Create a [serverless.yml](example/serverless.yml) file in the same folder as your package.json where you installed `aws-lambda-pdf`, then run:
+You can build the Docker image locally and run it like so:
 
+```bash
+docker build -t playwright-pdf .
+docker stop playwright-pdf
+docker rm playwright-pdf
+docker run -d -p 3000:3000 --name playwright-pdf playwright-pdf
 ```
-npx serverless deploy
-```
-
-## Test
 
 This will produce a PDF with the text "Hello world" in it:
 
 ```sh
-curl https://replace-with-your-url.execute-api.us-east-1.amazonaws.com/dev/pdf \
+curl http://localhost:3000/pdf \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/pdf' \
   --data-raw $'{"html":"<html><body><p>Hello world</p></body></html>"}' \
   --output hello-world.pdf
 ```
-
-## Logging
-
-[Live Tail in CloudWatch](https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1#logsV2:live-tail)
