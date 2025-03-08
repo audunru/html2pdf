@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.51.0-jammy AS base
+FROM node:22-alpine AS base
 
 FROM base AS deps
   WORKDIR /app
@@ -14,7 +14,7 @@ FROM deps AS prod-deps
   WORKDIR /app
   RUN npm ci --omit=dev
 
-FROM base AS runner
+FROM mcr.microsoft.com/playwright:v1.51.0-jammy AS runner
   WORKDIR /app
   RUN addgroup --system --gid 1001 express
   RUN adduser --system --uid 1001 express
