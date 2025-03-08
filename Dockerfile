@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.50.1-jammy AS base
+FROM mcr.microsoft.com/playwright:v1.51.0-jammy AS base
 
 FROM base AS deps
   WORKDIR /app
