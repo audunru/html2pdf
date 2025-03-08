@@ -7,10 +7,18 @@ import { MimeType, ReasonPhrases, StatusCodes } from "./utils/response";
 
 const app = express();
 
-app.use(express.json({ limit: "10mb" }));
+app.use(express.json());
 
 app.post("/pdf", async (req, res) => {
   const request = downloadRequestSchema.safeParse(req.body);
+
+  if (config.ALLOW_ORIGIN) {
+    res.setHeader("Access-Control-Allow-Origin", config.ALLOW_ORIGIN);
+  }
+
+  if (config.HSTS_HEADER) {
+    res.setHeader("Strict-Transport-Security", config.HSTS_HEADER);
+  }
 
   if (!request.success) {
     console.error(request.error);
