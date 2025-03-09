@@ -31,6 +31,7 @@ services:
       WAIT_UNTIL: "domcontentloaded"
       PDF_OPTIONS: "{'landscape':true}"
       PORT: "3000"
+      PAYLOAD_LIMIT: "100kb"
 ```
 
 ## Turning HTML into a PDF
