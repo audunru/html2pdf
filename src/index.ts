@@ -8,7 +8,7 @@ import { MimeType, ReasonPhrases, StatusCodes } from "./utils/response";
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ limit: config.PAYLOAD_LIMIT }));
 app.use(logger());
 
 app.post("/pdf", async (req, res) => {

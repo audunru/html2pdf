@@ -30,6 +30,7 @@ const configSchema = z.object({
     .transform(parseJson<PdfOptions>)
     .pipe(z.object({}).passthrough()),
   PORT: z.string().default("3000"),
+  PAYLOAD_LIMIT: z.string().default("100kb"),
 });
 
 const config = configSchema.safeParse(env);
