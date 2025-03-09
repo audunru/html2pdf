@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/audunru/html2pdf/compare/v0.3.1...v0.4.0) (2025-03-09)
+
+
+### Features
+
+* allow setting payload limit ([#8](https://github.com/audunru/html2pdf/issues/8)) ([82dc8ea](https://github.com/audunru/html2pdf/commit/82dc8ea733c80793a23c0eed8c546fd0c13cb0b9))
+
 ## [0.3.1](https://github.com/audunru/html2pdf/compare/v0.3.0...v0.3.1) (2025-03-08)
 
 
