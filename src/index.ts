@@ -35,7 +35,8 @@ app.post("/pdf", upload.single("file"), async (req, res) => {
 
     res.setHeader("Content-Type", MimeType.PDF);
     res.status(StatusCodes.OK).send(pdf);
-  } catch {
+  } catch (error) {
+    console.error({ error });
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
       .json({ error: ReasonPhrases.INTERNAL_SERVER_ERROR });
