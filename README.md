@@ -26,7 +26,7 @@ services:
       - "3000:3000"
     environment:
       ALLOW_ORIGIN: "https://domain.com"
-      HSTS_HEADER: "max-age=63072000; includeSubDomains; preload"
+      HEADERS: "{'Strict-Transport-Security':'max-age=63072000; includeSubDomains; preload'}"
       JAVASCRIPT_ENABLED: true
       WAIT_UNTIL: "domcontentloaded"
       PDF_OPTIONS: "{'landscape':true}"

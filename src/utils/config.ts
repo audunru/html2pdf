@@ -9,7 +9,12 @@ export type PdfOptions = Parameters<Page["pdf"]>[0];
 
 const configSchema = z.object({
   ALLOW_ORIGIN: z.string().optional(),
-  HSTS_HEADER: z.string().optional(),
+  HEADERS: z
+    .string()
+    .default("{}")
+    .transform(parseJson<Record<string, string>>)
+    .pipe(z.record(z.string()))
+    .transform((headers) => new Map(Object.entries(headers))),
   JAVASCRIPT_ENABLED: z
     .string()
     .toLowerCase()
