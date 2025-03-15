@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.0](https://github.com/audunru/html2pdf/compare/v0.4.0...v0.5.0) (2025-03-15)
+
+
+### Features
+
+* configurable headers ([#13](https://github.com/audunru/html2pdf/issues/13)) ([d74e0a5](https://github.com/audunru/html2pdf/commit/d74e0a573175154a2839150e30ffe50b837cf1ce))
+* server accepts formdata instead of json ([#10](https://github.com/audunru/html2pdf/issues/10)) ([1dbdc46](https://github.com/audunru/html2pdf/commit/1dbdc465cb1c55616cebf2fb90cde5a3d8b24f2f))
+* use express cors middleware ([#12](https://github.com/audunru/html2pdf/issues/12)) ([cd38989](https://github.com/audunru/html2pdf/commit/cd38989c59e8d3d7665df22cf1e0511ce199cb0c))
+
 ## [0.4.0](https://github.com/audunru/html2pdf/compare/v0.3.1...v0.4.0) (2025-03-09)
 
 
