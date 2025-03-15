@@ -1,18 +1,23 @@
 import express from "express";
+import multer from "multer";
 import logger from "pino-http";
 
 import config from "./utils/config";
 import { getPdf } from "./utils/pdf";
-import { downloadRequestSchema } from "./utils/request";
 import { MimeType, ReasonPhrases, StatusCodes } from "./utils/response";
 
 const app = express();
-
-app.use(express.json({ limit: config.PAYLOAD_LIMIT }));
+const upload = multer({ limits: { fileSize: config.PAYLOAD_LIMIT } });
 app.use(logger());
 
-app.post("/pdf", async (req, res) => {
-  const request = downloadRequestSchema.safeParse(req.body);
+app.post("/pdf", upload.single("file"), async (req, res) => {
+  if (!req.file) {
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ error: ReasonPhrases.BAD_REQUEST });
+
+    return;
+  }
 
   if (config.ALLOW_ORIGIN) {
     res.setHeader("Access-Control-Allow-Origin", config.ALLOW_ORIGIN);
@@ -22,16 +27,8 @@ app.post("/pdf", async (req, res) => {
     res.setHeader("Strict-Transport-Security", config.HSTS_HEADER);
   }
 
-  if (!request.success) {
-    res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ error: ReasonPhrases.BAD_REQUEST });
-
-    return;
-  }
-
   try {
-    const pdf = await getPdf(request.data.html, {
+    const pdf = await getPdf(req.file.buffer, {
       javaScriptEnabled: config.JAVASCRIPT_ENABLED,
       waitUntil: config.WAIT_UNTIL,
       pdfOptions: config.PDF_OPTIONS,
