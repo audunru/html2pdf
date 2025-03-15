@@ -11,7 +11,7 @@ Note that any resources referred to in the HTML (JavaScript, CSS, images) will n
 ### docker
 
 ```bash
-docker run -d -p 3000:3000 --name html2pdf audunru/html2pdf
+docker run -d -p 3000:3000 --name html2pdf --security-opt seccomp=seccomp_profile.json audunru/html2pdf
 ```
 
 ### docker compose
@@ -32,6 +32,8 @@ services:
       PDF_OPTIONS: "{'landscape':true}"
       PORT: "3000"
       PAYLOAD_LIMIT: "100000"
+    security_opt:
+      - seccomp=seccomp_profile.json
 ```
 
 ## Turning HTML into a PDF
@@ -69,5 +71,5 @@ You can build the Docker image locally and run it like so:
 docker build -t html2pdf .
 docker stop html2pdf
 docker rm html2pdf
-docker run -d -p 3000:3000 --name html2pdf html2pdf
+docker run -d -p 3000:3000 --name html2pdf --security-opt seccomp=seccomp_profile.json html2pdf
 ```
