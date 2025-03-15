@@ -3,7 +3,6 @@
   "version": "0.4.0",
   "description": "Create PDFs using an Express server and Playwright running in a Docker container",
   "license": "MIT",
-  "type": "module",
   "main": "dist/index.js",
   "scripts": {
     "prebuild": "rimraf dist",
