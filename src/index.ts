@@ -24,9 +24,7 @@ app.post("/pdf", upload.single("file"), async (req, res) => {
     return;
   }
 
-  if (config.HSTS_HEADER) {
-    res.setHeader("Strict-Transport-Security", config.HSTS_HEADER);
-  }
+  res.setHeaders(config.HEADERS);
 
   try {
     const pdf = await getPdf(req.file.buffer, {
