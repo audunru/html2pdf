@@ -3,7 +3,7 @@ import { chromium, ChromiumBrowser } from "playwright-core";
 import { PdfOptions } from "./config";
 
 export const getPdf = async (
-  html: string,
+  html: Buffer,
   options: {
     javaScriptEnabled: boolean;
     waitUntil: "domcontentloaded" | "load" | "networkidle" | "commit";
@@ -18,7 +18,7 @@ export const getPdf = async (
       javaScriptEnabled: options.javaScriptEnabled,
     });
     const page = await context.newPage();
-    await page.setContent(html, {
+    await page.setContent(html.toString(), {
       waitUntil: options.waitUntil,
     });
     const pdf = await page.pdf(options.pdfOptions);

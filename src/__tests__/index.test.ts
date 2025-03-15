@@ -7,9 +7,6 @@ describe("when printing a pdf", () => {
     it("returns a 400 error", async () => {
       const response = await fetch("http://localhost:3000/pdf", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
       });
 
       expect(response.status).toEqual(400);
@@ -17,15 +14,13 @@ describe("when printing a pdf", () => {
       expect(body).toEqual({ error: "Bad Request" });
     });
   });
-  describe("if request body is an empty object", () => {
+
+  describe("if request body is empty", () => {
     it("returns a 400 error", async () => {
-      const data = {};
+      const data = new FormData();
       const response = await fetch("http://localhost:3000/pdf", {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: data,
       });
 
       expect(response.status).toEqual(400);
@@ -33,33 +28,16 @@ describe("when printing a pdf", () => {
       expect(body).toEqual({ error: "Bad Request" });
     });
   });
-  describe("if request body html is undefined", () => {
-    it("returns a 400 error", async () => {
-      const data = { html: undefined };
-      const response = await fetch("http://localhost:3000/pdf", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
 
-      expect(response.status).toEqual(400);
-      const body = await response.json();
-      expect(body).toEqual({ error: "Bad Request" });
-    });
-  });
   describe("if request body html contains valid HTML", () => {
     it("returns a PDF", async () => {
-      const data = {
-        html: "<html><body><p>Hello world</p></body></html>",
-      };
+      const data = new FormData();
+      const html = "<html><body><p>Hello world</p></body></html>";
+      const blob = new Blob([html], { type: "text/html" });
+      data.append("file", blob);
       const response = await fetch("http://localhost:3000/pdf", {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: data,
       });
 
       expect(response.status).toEqual(200);

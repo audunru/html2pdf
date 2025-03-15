@@ -31,33 +31,31 @@ services:
       WAIT_UNTIL: "domcontentloaded"
       PDF_OPTIONS: "{'landscape':true}"
       PORT: "3000"
-      PAYLOAD_LIMIT: "100kb"
+      PAYLOAD_LIMIT: "100000"
 ```
 
 ## Turning HTML into a PDF
 
-This will produce a PDF with the text "Hello world" in it:
+This will produce a PDF with the text "Hello world" in it.
+
+### curl
 
 ```sh
-curl http://localhost:3000/pdf \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/pdf' \
-  --data-raw $'{"html":"<html><body><p>Hello world</p></body></html>"}' \
-  --output hello-world.pdf
+curl http://localhost:3000/pdf --output hello-world.pdf \
+  -F "file=@-" <<< "<html><body><p>Hello world3</p></body></html>"
 ```
 
-JavaScript example:
+### JavaScript
 
 ```js
-const data = {
-  html: "<html><body><p>Hello world</p></body></html>",
-};
+const formData = new FormData();
+const html = "<html><body><p>Hello world</p></body></html>";
+const blob = new Blob([html], { type: "text/html" });
+formData.append("file", blob);
+
 const response = await fetch("http://localhost:3000/pdf", {
   method: "POST",
-  body: JSON.stringify(data),
-  headers: {
-    "Content-Type": "application/json",
-  },
+  body: formData,
 });
 ```
 
