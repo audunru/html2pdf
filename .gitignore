@@ -1,4 +1,7 @@
-dist
-node_modules
-.eslintcache
-.serverless
+# Ignore everything
+*
+
+# Allow files and directories
+!/src
+!/package.json
+!/package-lock.json

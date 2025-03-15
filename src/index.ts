@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import multer from "multer";
 import logger from "pino-http";
@@ -10,6 +11,10 @@ const app = express();
 const upload = multer({ limits: { fileSize: config.PAYLOAD_LIMIT } });
 app.use(logger());
 
+if (config.ALLOW_ORIGIN) {
+  app.use(cors({ origin: config.ALLOW_ORIGIN }));
+}
+
 app.post("/pdf", upload.single("file"), async (req, res) => {
   if (!req.file) {
     res
@@ -17,10 +22,6 @@ app.post("/pdf", upload.single("file"), async (req, res) => {
       .json({ error: ReasonPhrases.BAD_REQUEST });
 
     return;
-  }
-
-  if (config.ALLOW_ORIGIN) {
-    res.setHeader("Access-Control-Allow-Origin", config.ALLOW_ORIGIN);
   }
 
   if (config.HSTS_HEADER) {
