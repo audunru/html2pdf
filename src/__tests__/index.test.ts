@@ -10,7 +10,7 @@ describe("when printing a pdf", () => {
       });
 
       expect(response.status).toEqual(400);
-      const body = await response.json();
+      const body: unknown = await response.json();
       expect(body).toEqual({ error: "Bad Request" });
     });
   });
@@ -24,7 +24,7 @@ describe("when printing a pdf", () => {
       });
 
       expect(response.status).toEqual(400);
-      const body = await response.json();
+      const body: unknown = await response.json();
       expect(body).toEqual({ error: "Bad Request" });
     });
   });
