@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/audunru/html2pdf/compare/v0.6.0...v1.0.0) (2025-09-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* update dependencies ([#30](https://github.com/audunru/html2pdf/issues/30))
+
+### Build System
+
+* update dependencies ([#30](https://github.com/audunru/html2pdf/issues/30)) ([2862442](https://github.com/audunru/html2pdf/commit/2862442b83b3f180cc52c76ed7f0ad2f4e2f495c))
+
 ## [0.6.0](https://github.com/audunru/html2pdf/compare/v0.5.0...v0.6.0) (2025-03-15)
 
 
