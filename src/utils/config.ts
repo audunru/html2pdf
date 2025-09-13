@@ -13,7 +13,7 @@ const configSchema = z.object({
     .string()
     .default("{}")
     .transform(parseJson<Record<string, string>>)
-    .pipe(z.record(z.string()))
+    .pipe(z.record(z.string(), z.string()))
     .transform((headers) => new Map(Object.entries(headers))),
   JAVASCRIPT_ENABLED: z
     .string()
