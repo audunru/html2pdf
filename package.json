@@ -29,7 +29,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/multer": "^2.0.0",
-    "@types/node": "^24.3.3",
+    "@types/node": "^24.5.0",
     "esbuild": "^0.25.9",
     "eslint": "^9.35.0",
     "eslint-config-prettier": "^10.1.8",
@@ -43,7 +43,7 @@
     "rimraf": "^6.0.1",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.43.0",
+    "typescript-eslint": "^8.44.0",
     "vitest": "^3.2.4"
   },
   "repository": {
