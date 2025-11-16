@@ -28,4 +28,5 @@ FROM playwright-base AS runner
   COPY --from=prod-deps --chown=express:express /app/package*.json ./
   COPY --from=prod-deps --chown=express:express /app/node_modules ./node_modules
   COPY --from=builder --chown=express:express /app/dist ./dist
+  HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 CMD node dist/healthcheck.js
   ENTRYPOINT ["npm", "run", "start"]

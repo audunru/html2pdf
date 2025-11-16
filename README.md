@@ -73,3 +73,11 @@ docker stop html2pdf
 docker rm html2pdf
 docker run -d -p 3000:3000 --name html2pdf --security-opt seccomp=seccomp_profile.json html2pdf
 ```
+
+### Testing
+
+While the container is running, run tests:
+
+```bash
+npm run test
+```

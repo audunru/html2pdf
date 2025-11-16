@@ -15,6 +15,10 @@ if (config.ALLOW_ORIGIN) {
   app.use(cors({ origin: config.ALLOW_ORIGIN }));
 }
 
+app.get("/healthz", (_req, res) => {
+  res.status(StatusCodes.OK).json({ status: ReasonPhrases.OK });
+});
+
 app.post("/pdf", upload.single("file"), async (req, res) => {
   if (!req.file) {
     res
