@@ -49,3 +49,13 @@ describe("when printing a pdf", () => {
     });
   });
 });
+
+describe("when checking service health", () => {
+  it("returns OK", async () => {
+    const response = await fetch("http://localhost:3000/healthz");
+
+    expect(response.status).toEqual(200);
+    const body: unknown = await response.json();
+    expect(body).toEqual({ status: "OK" });
+  });
+});

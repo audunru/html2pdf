@@ -4,6 +4,7 @@ export enum MimeType {
 }
 
 export enum ReasonPhrases {
+  OK = "OK",
   BAD_REQUEST = "Bad Request",
   INTERNAL_SERVER_ERROR = "Internal Server Error",
 }
