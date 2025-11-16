@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/audunru/html2pdf/compare/v1.0.0...v1.1.0) (2025-11-16)
+
+
+### Features
+
+* container includes healthcheck ([e6108bb](https://github.com/audunru/html2pdf/commit/e6108bb779eb0021ec6a021d83dc0292ae71f233)), closes [#16](https://github.com/audunru/html2pdf/issues/16)
+
 # Changelog
 
 ## [1.0.0](https://github.com/audunru/html2pdf/compare/v0.6.0...v1.0.0) (2025-09-13)

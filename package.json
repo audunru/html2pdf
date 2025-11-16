@@ -1,6 +1,6 @@
 {
   "name": "html2pdf",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Create PDFs using an Express server and Playwright running in a Docker container",
   "license": "MIT",
   "main": "dist/index.js",
