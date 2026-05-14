@@ -1,4 +1,4 @@
-ARG PLAYWRIGHT_VERSION="1.57.0"
+ARG PLAYWRIGHT_VERSION="1.59.1"
 
 FROM node:25-alpine AS base
 
@@ -17,6 +17,7 @@ FROM deps AS prod-deps
   RUN npm ci --omit=dev
 
 FROM node:25-bookworm AS playwright-base
+  ARG PLAYWRIGHT_VERSION
   ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
   RUN npx -y playwright@${PLAYWRIGHT_VERSION} install --with-deps --only-shell chromium
 
