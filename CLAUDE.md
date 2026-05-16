@@ -17,8 +17,9 @@ npm run build        # Compile TypeScript to dist/ via esbuild
 npm run start        # Run compiled app (node dist/index.js)
 npm run test         # Run tests with Vitest
 npm run typecheck    # TypeScript type checking (no emit)
-npm run lint         # ESLint
-npm run format       # Prettier
+npm run biome:check  # biome (check for issues)
+npm run biome:write  # biome (fix all autofixable issues)
+
 ```
 
 To run a single test file:

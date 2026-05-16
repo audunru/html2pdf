@@ -1,5 +1,5 @@
 import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
-import { TextItem } from "pdfjs-dist/types/src/display/api";
+import type { TextItem } from "pdfjs-dist/types/src/display/api";
 
 export const getPdfText = async (src: ArrayBuffer): Promise<string> => {
   const pdf = await getDocument(src).promise;
