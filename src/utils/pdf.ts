@@ -1,6 +1,6 @@
-import { chromium, ChromiumBrowser } from "playwright-core";
+import { type ChromiumBrowser, chromium } from "playwright-core";
 
-import { PdfOptions } from "./config";
+import type { PdfOptions } from "./config";
 
 export const getPdf = async (
   html: Buffer,

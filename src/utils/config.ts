@@ -1,6 +1,6 @@
 import { env } from "node:process";
 
-import { Page } from "playwright-core";
+import type { Page } from "playwright-core";
 import { z } from "zod";
 
 import { parseJson } from "./json";
