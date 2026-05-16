@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/audunru/html2pdf/compare/v1.1.0...v1.1.1) (2026-05-16)
+
+
+### Bug Fixes
+
+* install correct version of playwright ([#66](https://github.com/audunru/html2pdf/issues/66)) ([1059894](https://github.com/audunru/html2pdf/commit/105989499a4557f137b9deca34a1d4272d273777))
+
 # [1.1.0](https://github.com/audunru/html2pdf/compare/v1.0.0...v1.1.0) (2025-11-16)
 
 
