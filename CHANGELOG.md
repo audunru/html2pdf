@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/audunru/html2pdf/compare/v1.2.0...v1.2.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* **docker:** switch runner to node:25-trixie-slim and refresh packages ([#75](https://github.com/audunru/html2pdf/issues/75)) ([ae2519e](https://github.com/audunru/html2pdf/commit/ae2519ebcf6c88d812bbb5a07cd3058eca9e2b09))
+
 # [1.2.0](https://github.com/audunru/html2pdf/compare/v1.1.1...v1.2.0) (2026-05-25)
 
 
