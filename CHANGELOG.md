@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/audunru/html2pdf/compare/v1.1.1...v1.2.0) (2026-05-25)
+
+
+### Features
+
+* add Trivy security scan workflow ([#71](https://github.com/audunru/html2pdf/issues/71)) ([46389ed](https://github.com/audunru/html2pdf/commit/46389ed4425bfc026109c806a7554836f6aa97e0))
+
 ## [1.1.1](https://github.com/audunru/html2pdf/compare/v1.1.0...v1.1.1) (2026-05-16)
 
 
