@@ -16,9 +16,12 @@ FROM deps AS prod-deps
   WORKDIR /app
   RUN npm ci --omit=dev
 
-FROM node:25-bookworm AS playwright-base
+FROM node:25-trixie-slim AS playwright-base
   ARG PLAYWRIGHT_VERSION
   ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+  RUN apt-get update && \
+      apt-get -y -t trixie-security upgrade && \
+      rm -rf /var/lib/apt/lists/*
   RUN npx -y playwright@${PLAYWRIGHT_VERSION} install --with-deps --only-shell chromium
 
 FROM playwright-base AS runner
