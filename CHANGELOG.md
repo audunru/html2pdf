@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/audunru/html2pdf/compare/v1.2.1...v1.2.2) (2026-05-26)
+
+
+### Bug Fixes
+
+* **docker:** update npm with 7-day cooldown before playwright install ([#77](https://github.com/audunru/html2pdf/issues/77)) ([108f717](https://github.com/audunru/html2pdf/commit/108f71782a7e3532a63ee7fcc3e18a896199fff9))
+
 ## [1.2.1](https://github.com/audunru/html2pdf/compare/v1.2.0...v1.2.1) (2026-05-25)
 
 
