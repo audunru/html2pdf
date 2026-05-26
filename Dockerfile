@@ -22,6 +22,8 @@ FROM node:25.9.0-trixie-slim AS playwright-base
   RUN apt-get update && \
       apt-get -y -t trixie-security upgrade && \
       rm -rf /var/lib/apt/lists/*
+  RUN printf 'min-release-age=7\n' > /root/.npmrc && \
+      npm i -g npm
   RUN npx -y playwright@${PLAYWRIGHT_VERSION} install --with-deps --only-shell chromium
 
 FROM playwright-base AS runner
