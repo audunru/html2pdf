@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/audunru/html2pdf/compare/v1.2.2...v1.2.3) (2026-05-29)
+
+
+### Bug Fixes
+
+* **ci:** reduce redundant workflow runs and simplify release config ([#79](https://github.com/audunru/html2pdf/issues/79)) ([0b99275](https://github.com/audunru/html2pdf/commit/0b992755da1ce189b6b717fe966c6090a51b17af))
+
 ## [1.2.2](https://github.com/audunru/html2pdf/compare/v1.2.1...v1.2.2) (2026-05-26)
 
 
