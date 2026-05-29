@@ -13,7 +13,8 @@
     "biome:write": "biome check --write",
     "prepare": "husky || true",
     "test": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "cors": "^2.8.6",
