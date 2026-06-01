@@ -1,6 +1,6 @@
 ARG PLAYWRIGHT_VERSION="1.59.1"
 
-FROM node:25.9.0-alpine AS base
+FROM node:26.2.0-alpine AS base
 
 FROM base AS deps
   WORKDIR /app
@@ -16,7 +16,7 @@ FROM deps AS prod-deps
   WORKDIR /app
   RUN npm ci --omit=dev
 
-FROM node:25.9.0-trixie-slim AS playwright-base
+FROM node:26.2.0-trixie-slim AS playwright-base
   ARG PLAYWRIGHT_VERSION
   ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
   RUN apt-get update && \
