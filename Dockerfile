@@ -19,7 +19,6 @@ FROM deps AS prod-deps
 FROM node:26.2.0-trixie-slim AS playwright-base
   ARG PLAYWRIGHT_VERSION
   ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
-  ENV DEBIAN_FRONTEND=noninteractive
   RUN apt-get update && \
       apt-get -y -t trixie-security upgrade && \
       rm -rf /var/lib/apt/lists/*
