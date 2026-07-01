@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/audunru/html2pdf/compare/v1.2.3...v1.2.4) (2026-07-01)
+
+
+### Bug Fixes
+
+* **test:** wrap PDF buffer in data param for pdfjs-dist v6 compat ([2422473](https://github.com/audunru/html2pdf/commit/242247394bc0f2d7ac0ef781fe751f2c78d5a290))
+
 ## [1.2.3](https://github.com/audunru/html2pdf/compare/v1.2.2...v1.2.3) (2026-05-29)
 
 
