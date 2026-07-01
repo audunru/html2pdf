@@ -43,6 +43,12 @@ jobs:
       - name: Run PDF service container
         run: docker run -d -p 3000:3000 --name html2pdf html2pdf:test
 
+      - name: Wait for PDF service
+        run: |
+          curl --retry 30 --retry-delay 1 --retry-all-errors --fail --silent --show-error \
+            http://localhost:3000/healthz \
+            || { echo "Service never became healthy"; docker logs html2pdf; exit 1; }
+
       - run: npm run test
 
       - name: Stop PDF container
