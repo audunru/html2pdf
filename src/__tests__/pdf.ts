@@ -2,7 +2,7 @@ import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
 import type { TextItem } from "pdfjs-dist/types/src/display/api";
 
 export const getPdfText = async (src: ArrayBuffer): Promise<string> => {
-  const pdf = await getDocument(src).promise;
+  const pdf = await getDocument({ data: new Uint8Array(src) }).promise;
 
   const pageNumberList = Array.from({ length: pdf.numPages }, (_, i) => i + 1);
 
