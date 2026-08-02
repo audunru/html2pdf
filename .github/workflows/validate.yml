@@ -25,6 +25,8 @@ jobs:
 
       - run: npm run biome:check
 
+      - run: npm run typecheck
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
 
