@@ -39,8 +39,8 @@ jobs:
           push: false
           load: true
           tags: html2pdf:test
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=html2pdf
+          cache-to: type=gha,mode=max,scope=html2pdf
 
       - name: Run PDF service container
         run: docker run -d -p 3000:3000 --name html2pdf html2pdf:test
