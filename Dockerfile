@@ -1,4 +1,4 @@
-FROM node:26.5.0-alpine AS base
+FROM node:26.8.1-alpine AS base
 
 FROM base AS deps
   WORKDIR /app
@@ -21,7 +21,7 @@ FROM base AS pw-version
   COPY package-lock.json ./
   RUN node -p "require('./package-lock.json').packages['node_modules/playwright-core'].version" > /pw-version
 
-FROM node:26.5.0-trixie-slim AS playwright-base
+FROM node:26.8.1-trixie-slim AS playwright-base
   ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
   RUN apt-get update && \
       apt-get -y -t trixie-security upgrade && \
