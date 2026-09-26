@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/audunru/html2pdf/compare/v1.2.4...v1.2.5) (2026-09-26)
+
+
+### Bug Fixes
+
+* **docker:** rebuild OS packages on every image publish ([#112](https://github.com/audunru/html2pdf/issues/112)) ([a5c4653](https://github.com/audunru/html2pdf/commit/a5c46532fb1e8760ec29477c4cd22283becb3bd9)), closes [#111](https://github.com/audunru/html2pdf/issues/111)
+
 ## [1.2.4](https://github.com/audunru/html2pdf/compare/v1.2.3...v1.2.4) (2026-07-01)
 
 
