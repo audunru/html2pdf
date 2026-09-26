@@ -43,3 +43,4 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha,scope=html2pdf
           cache-to: type=gha,mode=max,scope=html2pdf
+          no-cache-filters: playwright-base
