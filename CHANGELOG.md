@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/audunru/html2pdf/compare/v1.2.5...v1.2.6) (2026-10-06)
+
+
+### Bug Fixes
+
+* **deps:** update proxy-addr to 2.0.8 ([#122](https://github.com/audunru/html2pdf/issues/122)) ([65d45b2](https://github.com/audunru/html2pdf/commit/65d45b27f0e2ffc1a656c4ee854e058436c6e447)), closes [#121](https://github.com/audunru/html2pdf/issues/121)
+
 ## [1.2.5](https://github.com/audunru/html2pdf/compare/v1.2.4...v1.2.5) (2026-09-26)
 
 
