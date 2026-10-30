@@ -22,7 +22,7 @@
     "multer": "^2.5.0",
     "pino-http": "^11.0.0",
     "playwright-core": "1.63.0",
-    "zod": "^4.6.5"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "semantic-release": "^25.0.9",
